@@ -1,6 +1,5 @@
 import sqlite3 as db
 import pandas as pd
-import json
 # create connection to bioverse_app.db
 conn = db.connect("backend/bioverse_app.db")
 
@@ -54,15 +53,15 @@ CREATE TABLE IF NOT EXISTS users_answers (
 cursor.execute(create_user_answer_table)
 
 def insert_questionnaire_table():
-    df = pd.read_csv('scripts/questionnaire_questionnaires.csv')
+    df = pd.read_csv('backend/scripts/questionnaire_questionnaires.csv')
     df.to_sql('questionnaire_questionnaires', conn, if_exists='append', index=False)
 
 def insert_question_table():
-    df = pd.read_csv('scripts/questionnaire_questions.csv')
+    df = pd.read_csv('backend/scripts/questionnaire_questions.csv')
     df.to_sql('questionnaire_questions', conn, if_exists='append', index=False)
 
 def insert_junction_table():
-    df = pd.read_csv('scripts/questionnaire_junction.csv')
+    df = pd.read_csv('backend/scripts/questionnaire_junction.csv')
     df.to_sql('questionnaire_junction', conn, if_exists='append', index=False)
 
 
