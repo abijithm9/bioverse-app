@@ -42,12 +42,11 @@ CREATE TABLE IF NOT EXISTS users_answers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     user_email TEXT,
-    questionnaire_id INTEGER,
     question_id INTEGER,
     question_type TEXT,
     answer TEXT,
     FOREIGN KEY (question_id) REFERENCES questionnaire_questions (id),
-    UNIQUE(user_id, questionnaire_id, question_id) 
+    UNIQUE(user_id, question_id) 
 );
 """
 cursor.execute(create_user_answer_table)
