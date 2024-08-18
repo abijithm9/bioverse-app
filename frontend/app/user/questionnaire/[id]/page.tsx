@@ -43,7 +43,7 @@ function Questionnaire() {
             const currUserAnswers: Record<number, UserAnswerWithQuestion> = {}
             questions.forEach((question: Question) => {
 
-                const existingAnswer = existingUserAnswers?.find((answer: UserAnswerWithQuestion) => answer.question_id === question.question_id);
+                const existingAnswer = existingUserAnswers.find((answer: UserAnswerWithQuestion) => answer.question_id === question.question_id);
 
                 if (existingAnswer) {
                     currUserAnswers[question.question_id] = {
