@@ -2,15 +2,16 @@ const express = require('express')
 const sqlite3 = require('sqlite3').verbose()
 const cors = require('cors')
 const bodyParser = require('body-parser')
-
+const path = require('path');
 const app = express()
 const PORT = process.env.PORT || 3001
 
-let db = new sqlite3.Database('bioverse_app.db', sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    return console.error(err.message)
-  }
-  console.log('Connected to the in-memory SQlite database.')
+const dbPath = path.resolve(__dirname, 'bioverse_app.db');
+let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        return console.error(err.message)
+    }
+    console.log('Connected to in-memory SQLite DB')
 })
 
 app.use(cors())
