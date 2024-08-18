@@ -37,7 +37,6 @@ export default function Login() {
                 email,
                 password
             })
-            console.log("response: ",response)
             if (response.data.success) {
                 toast({
                     title: "Login Success",

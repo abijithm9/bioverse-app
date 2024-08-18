@@ -42,7 +42,7 @@ app.post('/api/login', (req, res) => {
 
 // Get questionnaires
 app.get('/api/questionnaires', (req, res) => {
-    db.all(`SELECT * FROM questionnaire_questionnaires`, (err, rows) => {
+    db.all(`SELECT * FROM questionnaires`, (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message })
             return
@@ -55,11 +55,11 @@ app.get('/api/questionnaires', (req, res) => {
 app.get('/api/questionnaire/:id/questions', (req, res) => {
     const questionnaireId = req.params.id
     const query = `
-        SELECT qj.question_id, qq.question, qj.priority
-        FROM questionnaire_junction qj
-        JOIN questionnaire_questions qq on qj.question_id = qq.id
-        where qj.questionnaire_id == ${questionnaireId}
-        ORDER BY qj.priority ASC
+        SELECT j.question_id, q.question, j.priority
+        FROM junction j
+        JOIN questions q on j.question_id = q.id
+        where j.questionnaire_id == ${questionnaireId}
+        ORDER BY j.priority ASC
     `
     db.all(query, (err, rows) => {
         if (err) {
@@ -85,11 +85,11 @@ app.post('/api/submit-questionnaire', (req, res) => {
 
     answers.forEach(answer => {
         db.run(`
-            INSERT INTO users_answers (user_id, user_email, questionnaire_id, question_id, question_type, answer)
-            VALUES (?, ?, ?, ?, ?, ?)
-            ON CONFLICT(user_id, questionnaire_id, question_id) 
+            INSERT INTO users_answers (user_id, user_email, question_id, question_type, answer)
+            VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT(user_id, question_id) 
             DO UPDATE SET answer = excluded.answer
-        `, [user.id, user.email, questionnaireId, answer.question_id, answer.question_type, answer.answer], function(err) {
+        `, [user.id, user.email, answer.question_id, answer.question_type, answer.answer], function(err) {
             if (err) {
                 console.log(err.message)
             }
@@ -114,7 +114,7 @@ app.get('/api/user/:id/answers', (req, res) => {
     const query = `
         SELECT *
         FROM users_answers
-        JOIN questionnaire_questions qq on qq.id = users_answers.question_id
+        JOIN questions q on q.id = users_answers.question_id
         where user_id = '${userId}'
     `
     db.all(query, (err, rows) => {

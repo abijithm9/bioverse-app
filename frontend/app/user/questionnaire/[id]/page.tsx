@@ -8,11 +8,9 @@ import { useParams } from 'next/navigation';
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from '@/components/ui/button';
 import { Question, UserAnswer, UserAnswerWithQuestion } from '@/app/types';
 import QuestionBox from '@/components/ui/question-box';
