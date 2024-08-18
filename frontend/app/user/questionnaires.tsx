@@ -13,7 +13,7 @@ function Questionnaires() {
 
     useEffect(() => {
         const fetchQuestionnaires = async () => {
-            const res = await axios.get('http://localhost:3001/api/questionnaires');
+            const res = await axios.get('https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/questionnaires');
             setQuestionnaires(res.data.questionnaires);
         };
         fetchQuestionnaires();

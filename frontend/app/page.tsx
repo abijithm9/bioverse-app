@@ -33,7 +33,7 @@ export default function Login() {
 
     const handleSubmit = useCallback(async () => {
         try {
-            const response = await axios.post<LoginResponse>('http://localhost:3001/api/login', {
+            const response = await axios.post<LoginResponse>('https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/login', {
                 email,
                 password
             })

@@ -27,7 +27,7 @@ function Questionnaire() {
     useEffect(() => {
         if (!id) return;
         const fetchQuestions = async () => {
-            const res = await axios.get(`http://localhost:3001/api/questionnaire/${id}/questions`)
+            const res = await axios.get(`https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/questionnaire/${id}/questions`)
             setQuestions(res.data.questions)
         }
         fetchQuestions()
@@ -38,27 +38,27 @@ function Questionnaire() {
         if (!user.id) return;
         const fetchPrevAnswers = async () => {
 
-            const res = await axios.get(`http://localhost:3001/api/user/${user.id}/answers`)
+            const res = await axios.get(`https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/user/${user.id}/answers`)
             const existingUserAnswers = res.data.userAnswers
             const currUserAnswers: Record<number, UserAnswerWithQuestion> = {}
             questions.forEach((question: Question) => {
 
-                const existingAnswer = existingUserAnswers?.find(answer => answer.question_id === question.question_id);
+                const existingAnswer = existingUserAnswers?.find((answer: UserAnswerWithQuestion) => answer.question_id === question.question_id);
 
                 if (existingAnswer) {
                     currUserAnswers[question.question_id] = {
                         ...existingAnswer,
-                        question: JSON.parse(question.question),
+                        question: JSON.parse(question.question as any),
 
                     }
                 } else {
                     currUserAnswers[question.question_id] = {
-                        question: JSON.parse(question.question),
+                        question: JSON.parse(question.question as any),
                         question_id: question.question_id,
                         user_id: user.id,
                         user_email: user.email,
                         questionnaire_id: Number(id),
-                        question_type: JSON.parse(question.question).type,
+                        question_type: JSON.parse(question.question as any).type,
                         answer: "",
 
                     } as UserAnswerWithQuestion;
@@ -73,7 +73,7 @@ function Questionnaire() {
         try {
 
 
-            const response = await axios.post('http://localhost:3001/api/submit-questionnaire', {
+            const response = await axios.post('https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/submit-questionnaire', {
                 userId: user.id,
                 userEmail: user.email, 
                 questionnaireId: Number(id), 

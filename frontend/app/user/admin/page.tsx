@@ -21,7 +21,7 @@ function Admin() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const res = await axios.get('http://localhost:3001/api/admin/users')
+            const res = await axios.get('https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/admin/users')
             setUsers(res.data.users);
         }
         fetchUsers()

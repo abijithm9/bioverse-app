@@ -9,7 +9,7 @@ export type LoginSuccessResponse = {
 export type User = {
     id: number,
     email: string,
-    password: number,
+    password?: number,
     role: string,
     name: string,
 }

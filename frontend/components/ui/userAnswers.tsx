@@ -15,7 +15,7 @@ const UserAnswers = ({ user }: UserAnswersProps) => {
     const loadAnswers = useCallback(() => {
         setIsLoading(true);
 
-        axios.get(`http://localhost:3001/api/user/${user.id}/answers`)
+        axios.get(`https://bioverse-backend-f40e702ba4ff.herokuapp.com/api/user/${user.id}/answers`)
             .then(res => {
                 setAnswers(res.data.userAnswers);
                 setIsLoading(false);
@@ -50,7 +50,7 @@ const UserAnswers = ({ user }: UserAnswersProps) => {
                         ) : (
                             <ul className="space-y-2">
                                 {answers.map((answer, index) =>{ 
-                                    const question = JSON.parse(answer.question);
+                                    const question = JSON.parse(answer.question as any);
                                     const questionString = question.question;
                                     return (
 

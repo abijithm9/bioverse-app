@@ -33,12 +33,12 @@ const UserPage: FC = () => {
                     <CardContent className="space-y-2">
                         <div className="space-y-1">
                             <Label htmlFor="name">Name</Label>
-                            <Input disabled id="name" defaultValue={user.name} />
+                            <Input disabled id="name" defaultValue={user?.name} />
                         </div>
                         <div className="space-y-1">
                             <Label htmlFor="email">Email</Label>
                             <Input disabled
-                            id="email" defaultValue={user.email}/>
+                            id="email" defaultValue={user?.email}/>
                         </div>
                     </CardContent>
                 </CardHeader>
