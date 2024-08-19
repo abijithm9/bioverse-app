@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import axios from 'axios';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion';
 import { User, UserAnswerWithQuestion } from '@/app/types';
@@ -10,7 +10,6 @@ type UserAnswersProps = {
 const UserAnswers = ({ user }: UserAnswersProps) => {
     const [answers, setAnswers] = useState<UserAnswerWithQuestion[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [questionString, setQuestionString] = useState<string | null>(null);
 
     const loadAnswers = useCallback(() => {
         setIsLoading(true);

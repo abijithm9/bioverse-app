@@ -100,9 +100,7 @@ function Questionnaire() {
     return (
         <div>
              <div style={{ padding: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            
-            
-                <Carousel className=" h-[60vh] w-[40%] max-w-3xl mx-auto max-h-[60vh]" opts={{ align: "start", slidesToScroll: 1 }}>
+                <Carousel className=" h-[60vh] w-[60%] max-w-xl mx-auto max-h-[40vh]" opts={{ align: "start", slidesToScroll: 1 }}>
                     <CarouselContent >
                        {Object.keys(userAnswers).map((questionId: any) => (
                             <QuestionBox key={questionId} question={userAnswers[questionId]} setAnswer={(answer: string) => setUserAnswers(prevAnswers => ({
@@ -111,25 +109,19 @@ function Questionnaire() {
                             }))} />
                         ))}
                     </CarouselContent>
-
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
-       
-
-        </div>
-       
- 
-                <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
-                    <Button
-                        className="bg-gray-500 hover:bg-black-600 text-white font-bold rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-                        onClick={handleSubmit}
-                    >
-                        Submit Questionnaire
-                    </Button>
-                </div>
-            </div> 
-    
+            </div>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                <Button
+                    className="bg-gray-500 hover:bg-black-600 text-white font-bold rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+                    onClick={handleSubmit}
+                >
+                Submit
+                </Button>
+            </div>
+        </div> 
     );
 }
 

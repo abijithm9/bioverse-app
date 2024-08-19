@@ -1,11 +1,10 @@
 'use client'
 
-import {FC, useState} from 'react'
-import { User, UserAnswerWithQuestion, MultipleChoiceQuestion } from '@/app/types';
+import { FC } from 'react'
+import { UserAnswerWithQuestion, MultipleChoiceQuestion } from '@/app/types';
 import { Card, CardContent } from "@/components/ui/card"
 import { CarouselItem } from './carousel';
-import {Checkbox} from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
+import { Checkbox } from '@/components/ui/checkbox'
 
 
 interface QuestionBoxProps {
@@ -14,11 +13,8 @@ interface QuestionBoxProps {
 }
 
 const QuestionBox: FC<QuestionBoxProps> = ({ question, setAnswer }) => {
-    // const [answer, setAnswer] = useState<string>(question.answer)
-
     return (
-    
-            <CarouselItem className="w-auto mx-30">
+            <CarouselItem className="h-auto min-w-[60%] max-h-[400px] scrollable-content overflow-y-auto overflow-x-auto overflow-x-scroll">
                 <Card className="shadow-lg rounded-lg overflow-hidden ">
                     <CardContent className="p-6">
                         <h3 className="text-2xl font-bold mb-6 text-gray-800">{question.question.question}</h3>
@@ -59,8 +55,6 @@ const QuestionBox: FC<QuestionBoxProps> = ({ question, setAnswer }) => {
                     </CardContent>
                 </Card>
             </CarouselItem>
-        
-  
     )
 }
 
